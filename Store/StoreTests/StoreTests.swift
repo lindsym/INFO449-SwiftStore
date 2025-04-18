@@ -66,4 +66,26 @@ TOTAL: $7.97
 """
         XCTAssertEqual(expectedReceipt, receipt.output())
     }
+    
+    //my additional unit tests
+    
+    //test described in READ.ME for adding 1 item
+    func testAddSingleItem() {
+        register.scan(Item(name: "Chocolate Cake Slice", priceEach: 300))
+        XCTAssertEqual(300, register.subtotal())
+    }
+    
+    func testRegisterUseBackToBack() {
+        register.scan(Item(name: "Cupcakes", priceEach: 400))
+        register.total()
+        register.scan(Item(name: "Oranges", priceEach: 300))
+        XCTAssertEqual(300, register.subtotal())
+    }
+    
+    func testNoItems() {
+        XCTAssertEqual(0, register.subtotal())
+    }
+    
+    
 }
+
